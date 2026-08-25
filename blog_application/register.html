@@ -21,17 +21,17 @@
     <form id="RegisterForm">
         <div class="register-card">
         <label for="name">Name:
-            <input class="register-input" type="text" name="name" placeholder="enter your name">
+            <input class="register-input" id="name" type="text" name="name" placeholder="enter your name">
         </label><br><br>
         <label for="email">Email:
-            <input class="register-input" type="email" placeholder="enter email" name="email">
+            <input class="register-input" id="email"    type="email" placeholder="enter email" name="email">
         </label><br><br>
         <label for="password">Password:
-            <input   class="register-input" type="password" placeholder="enter password">
+            <input   class="register-input" id="password" type="password" placeholder="enter password">
             <br><br>
-            Confirm Password:<input class="register-input" type="password" placeholder="confirm password">
+            Confirm Password:<input class="register-input" id="confirmPassword"  type="password" placeholder="confirm password">
         </label><br><br>
-        <button id="register-button">Register</button>
+        <button id="register-button" type="submit" >Register</button>
         <p>Already have an account?<b><a id="login-link" href="login.html">Login</a></b></p>
         </div>
     </form>

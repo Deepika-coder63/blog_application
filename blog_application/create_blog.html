@@ -21,7 +21,7 @@
     <form id="blogForm">
         <div class="create-blog-card">
         <label for="title">Blog title :
-            <input class="create-blog-input" type="text" placeholder="enter blog title">
+            <input class="create-blog-input" id="title"  type="text" placeholder="enter blog title">
         </label><br><br>
         <label for="category">Select category:
             <select name="category" id="category">
@@ -38,10 +38,10 @@
         <br>
          
         <label for="add-image" id="add-image">Add image:
-        <input class="create-blog-input" type="file" placeholder="add image of your choice">
+        <input class="create-blog-input" type="file" id="image"  placeholder="add image of your choice">
         </label>
         <br><br>
-        <button id="publish-button">Publish</button>
+        <button id="publish-button" type="submit">Publish</button>
         </div>
     </form>
     </div>
