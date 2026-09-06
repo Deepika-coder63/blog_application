@@ -1,0 +1,6 @@
+node_modules/
+.env
+uploads/
+node/
+.package_home.json
+.package_mistake.json

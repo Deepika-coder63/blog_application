@@ -83,6 +83,29 @@ if (blogform){
     })
 }
 
+//fetch blogs from database
+//display the blogs
+async function getBlogs(){
+    let response=await fetch("http://localhost:3000/blogs");
+    let data=await response.json();
+    let blogContainer=document.getElementById("blogContainer")
+    data.blogs.forEach((blog)=>{{
+         let cards=document.createElement("div")
+        cards.classList.add("blog-card")
+        cards.innerHTML=
+        `<img src="http://localhost:3000/uploads/${blog.image}" alt="blog image">
+        <h4>${blog.title}</h4>
+         <p>${blog.content}</p>
+         <p><b>Category:</b>${blog.category}</p>`
+        blogContainer.appendChild(cards)
+    }})
+    
+       
+}
+if(document.getElementById("blogContainer")){
+    getBlogs();
+}
+
 //hamburger
 const hamburger=document.getElementById("hamburger")
 const navLinks=document.getElementById("navLinks")
