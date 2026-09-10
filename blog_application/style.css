@@ -300,6 +300,37 @@ margin:20px 20px
  #create-blog-page-body{
     background-color: #f5f5f5;
 }
+/* edit button and delete button*/
+.edit-btn,.delete-btn{
+    
+    border: none;
+    border-radius: 6px;
+    padding:8px 16px;
+    font-size: 14px; 
+    margin-right: 8px; 
+    cursor: pointer;
+
+}
+.edit-btn{
+    background-color: black;
+    color:white;
+}
+.delete-btn{
+    background-color:rgb(239, 231, 231);
+    color:black;
+}
+.edit-btn:hover,.delete-btn:hover{
+    opacity:0.8;
+}
+
+
+
+
+
+
+
+
+
 
 /*footer */
 footer{

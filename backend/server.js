@@ -46,9 +46,7 @@ app.post("/login", async function(req,res){
     try{
         const user=await User.findOne({
             email:email,
-            
-            
-        })
+            })
         if(user===null){
             res.json({
                 message:"user not found! invalid email"
@@ -58,19 +56,14 @@ app.post("/login", async function(req,res){
                 res.json({
                 message:"login request successful",
                 user:user
-    })
+            })
             }else{
                 res.json({
                    message:"wrong password"
                 })
-            
             }
-              
         }
-       
-    
-    
-    }catch(err){
+            }catch(err){
         console.log(err)
         res.status(500).json({
           message:"error loging user"
@@ -105,12 +98,72 @@ app.get("/blogs", async function(req,res){
     res.json({
         message:"blog retrived successfully",
         blogs:blogs
-    })}catch(error){
+    })
+}catch(error){
         console.log(error);
         res.status(500).json({
             message:"error occured while retriving blogs"
         })
     }
 })
+app.get("/blogs/:id",async function(req,res){
+    try{
+    const id=req.params.id
+    const blog=await Blog.findById(id)
+    res.json({
+        message:"success!",
+        blog:blog
+    })
+}catch(error){
+    console.log(error)
+    res.status(500).json({
+        message:"error occured"
+    })
+}
+})
 
-app.listen(3000)
+app.put("/blogs/:id",upload.single("image")  , async (req,res)=>{
+     try{
+        
+        const id=req.params.id;
+        const data={
+            title:req.body.title,
+            category:req.body.category,
+            content:req.body.content
+        }
+        if(req.file){
+            data.image=req.file.filename;
+        }
+        const blog=await Blog.findByIdAndUpdate(id,data,
+        {new:true})
+        res.json({
+            message:"blog updated successfully",
+            blog:blog
+        })
+        
+        
+        
+     }catch(error){
+        console.log(error)
+        res.status(500).json({
+            message:"error  occured while updating blog"
+        })
+     }
+})
+
+app.delete("/blogs/:id",async function(req,res){
+    try{
+    const id=req.params.id;
+    const blog=await Blog.findByIdAndDelete(id)
+    res.json({
+      message:"deleted successfully"
+    })
+    }catch(error){
+        console.log(error)
+        res.status(500).json({
+            message:"error while deleting blog"
+        })
+    }
+
+})
+app.listen(3000);

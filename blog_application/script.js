@@ -92,19 +92,83 @@ async function getBlogs(){
     data.blogs.forEach((blog)=>{{
          let cards=document.createElement("div")
         cards.classList.add("blog-card")
+        //cards.dataset.id=blog._id;
         cards.innerHTML=
         `<img src="http://localhost:3000/uploads/${blog.image}" alt="blog image">
         <h4>${blog.title}</h4>
          <p>${blog.content}</p>
-         <p><b>Category:</b>${blog.category}</p>`
+         <p><b>Category:</b>${blog.category}</p>
+         <button class="edit-btn" onclick="editBlog('${blog._id}')">Edit</button>
+         <button class="delete-btn"  onclick="deleteBlog('${blog._id}')">Delete</button>`
+         
         blogContainer.appendChild(cards)
     }})
     
        
 }
+function editBlog(id){
+    window.location.href=`edit_blog.html?id=${id}`
+}
 if(document.getElementById("blogContainer")){
     getBlogs();
 }
+
+//update blog
+const params=new URLSearchParams(window.location.search)
+const id=params.get("id")
+console.log(id)
+async function getBlog(){
+    let response=await fetch(`http://localhost:3000/blogs/${id}`)
+    let data=await response.json()
+    console.log(data)
+    document.getElementById("title").value=data.blog.title
+    document.getElementById("category").value=data.blog.category
+    document.getElementById("content").value=data.blog.content
+}
+let editForm=document.getElementById("editBlogForm")
+if(editForm){
+getBlog()
+}
+
+if(editForm){
+editForm.addEventListener("submit",async (event)=>{
+    event.preventDefault()
+    let title=document.getElementById("title").value
+    let category=document.getElementById("category").value
+    let content=document.getElementById("content").value
+    let image=document.getElementById("image").files[0]
+    let formData=new FormData()
+    formData.append("title",title)
+    formData.append("category",category)
+    formData.append("content",content)
+    if(image){
+        formData.append("image",image)
+    }
+    let response=await fetch(`http://localhost:3000/blogs/${id}`,{
+        method:"PUT",
+       body:formData
+        })
+          let data=await response.json()
+    alert(data.message)
+    })
+  
+}
+
+
+
+//delete blog
+async function deleteBlog(id){
+let response=await fetch(`http://localhost:3000/blogs/${id}`,{
+    method:"DELETE"
+})
+let data=await response.json()
+alert(data.message)
+location.reload()
+}
+
+
+
+
 
 //hamburger
 const hamburger=document.getElementById("hamburger")

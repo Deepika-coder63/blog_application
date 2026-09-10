@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit blog</title>
+</head>
+<body>
+    <h2>Edit blog</h2>
+    <form id="editBlogForm">
+        <label>Title:</label>
+        <input type="text" id="title" required><br><br>
+        <label>Category:</label>
+        <select id="category" required>
+            <option value="news">News</option>
+            <option value="fitness">Fitness</option>
+            <option value="food">Food</option>
+            <option value="dance">Dance</option>
+        </select>
+        <br><br>
+        <label>Content:</label>
+        <textarea id="content" required></textarea>
+        <br><br>
+        <label>New Image:</label>
+        <input type="file" id="image">
+        <br><br>
+        <button type="submit">Update blog</button>
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
