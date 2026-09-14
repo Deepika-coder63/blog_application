@@ -51,9 +51,13 @@ loginform.addEventListener("submit", async function(event){
         })
     })
     let data=await response.json()
+    console.log(data)
+    if(data.token){
+        localStorage.setItem("token",data.token)
+    }
     alert(data.message)
-    //alert("Login successful")
-    location.reload()
+    
+    //location.reload()
 })
 }
 
@@ -71,8 +75,12 @@ if (blogform){
         formData.append("category",category)
         formData.append("content",content)
         formData.append("image",image)
+        let token=localStorage.getItem("token")
         let response=await fetch("http://localhost:3000/blogs",{
             method:'POST',
+            headers:{
+                "Authorization":`Bearer ${token}`
+            },
             body:formData
         })
         let data=await response.json()
@@ -82,11 +90,24 @@ if (blogform){
 
     })
 }
+//protection
+
+if(document.getElementById("blogContainer")){
+let token=localStorage.getItem("token")
+if(!token){
+    window.location.href="login.html"
+}
+}
 
 //fetch blogs from database
 //display the blogs
 async function getBlogs(){
-    let response=await fetch("http://localhost:3000/blogs");
+    let token=localStorage.getItem("token")
+    let response=await fetch("http://localhost:3000/blogs",{
+        headers:{
+            "Authorization":`Bearer ${token}`
+        }
+    });
     let data=await response.json();
     let blogContainer=document.getElementById("blogContainer")
     data.blogs.forEach((blog)=>{{
@@ -168,6 +189,30 @@ location.reload()
 
 
 
+//logout button
+let logoutBtn=document.getElementById("logoutBtn")
+if(logoutBtn){
+    logoutBtn.addEventListener("click",function(){
+        localStorage.removeItem("token")
+        window.location.href="login.html"
+    })
+}
+
+//profile
+async function getProfile(){
+    let token=localStorage.getItem("token")
+    let response=await fetch("http://localhost:3000/profile",{
+        headers:{
+            "Authorization":`Bearer ${token}`
+        }
+    })
+    let data=await response.json()
+    document.getElementById("profileName").textContent=data.name
+    document.getElementById("profileEmail").textContent=data.email
+}
+if(document.getElementById("profileName")){
+    getProfile()
+}
 
 
 //hamburger

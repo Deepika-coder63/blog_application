@@ -59,6 +59,12 @@ margin:20px 20px
    margin-left: 20px;
    margin-top: 10px;
 
+}
+#logoutBtn{
+    color:black;
+    background-color:gray;
+    border: none;
+    width: 5%;
 
 }
 /* dashboard page*/
@@ -106,9 +112,8 @@ margin:20px 20px
     display: flex;
     justify-content: space-around;
     margin-bottom: 30px;
-
-
 }
+
 .dashboard-main{
     padding-top: 10px;
     background-color:white;
@@ -322,6 +327,8 @@ margin:20px 20px
 .edit-btn:hover,.delete-btn:hover{
     opacity:0.8;
 }
+
+
 
 
 
