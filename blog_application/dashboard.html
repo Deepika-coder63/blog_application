@@ -17,19 +17,28 @@
         <br>
         
     </nav>
-    <h1 style="text-align: center;">Welcome to my blog page</h1>
-    <br>
-    <div id="blog_btn">
-            <h3>Existing blogs below....</h3>
-    <button id="button_dash"><a href="./create_blog.html">Create blog</a></button>
-    <button id="logoutBtn">Logout</button>    
+
+<h1 class="dashboard-title">Welcome to my blog page</h1>
+
+<div class="dashboard-actions">
+    <h3>Existing blogs below....</h3>
+
+    <div class="dashboard-buttons">
+        <button id="button_dash">
+            <a href="./create_blog.html">Create blog</a>
+        </button>
+
+        <button id="logoutBtn">Logout</button>
+    </div>
 </div>
-<div id="profile">
-    <h3>My profile</h3>
+
+<div id="profile" class="profile-card">
+    <h3>My Profile</h3>
     <p>Name: <span id="profileName"></span></p>
     <p>Email: <span id="profileEmail"></span></p>
 </div>
 
+<h2 class="blogs-heading">My Blogs</h2>
     <div class="card-grid" id="blogContainer"></div>
     
     <script src="script.js"></script>
