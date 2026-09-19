@@ -12,7 +12,7 @@ form.addEventListener("submit", async  function(event){
         alert("passwords doesnot match")
         return;
     }
-    let response=await fetch("http://localhost:3000/register",{
+    let response=await fetch("https://blog-application-hw22.onrender.com//register",{
         method:"POST",
         headers:{
             "Content-Type":"application/json"
@@ -40,7 +40,7 @@ loginform.addEventListener("submit", async function(event){
     event.preventDefault()
     let email=document.getElementById("email").value
     let password=document.getElementById("password").value
-    let response=await fetch("http://localhost:3000/login",{
+    let response=await fetch("https://blog-application-hw22.onrender.com//login",{
         method:"POST",
         headers:{
             "Content-Type":"application/json"
@@ -76,7 +76,7 @@ if (blogform){
         formData.append("content",content)
         formData.append("image",image)
         let token=localStorage.getItem("token")
-        let response=await fetch("http://localhost:3000/blogs",{
+        let response=await fetch("https://blog-application-hw22.onrender.com//blogs",{
             method:'POST',
             headers:{
                 "Authorization":`Bearer ${token}`
@@ -103,7 +103,7 @@ if(!token){
 //display the blogs
 async function getBlogs(){
     let token=localStorage.getItem("token")
-    let response=await fetch("http://localhost:3000/blogs",{
+    let response=await fetch("https://blog-application-hw22.onrender.com//blogs",{
         headers:{
             "Authorization":`Bearer ${token}`
         }
@@ -115,7 +115,7 @@ async function getBlogs(){
         cards.classList.add("blog-card")
         //cards.dataset.id=blog._id;
         cards.innerHTML=
-        `<img src="http://localhost:3000/uploads/${blog.image}" alt="blog image">
+        `<img src="https://blog-application-hw22.onrender.com//uploads/${blog.image}" alt="blog image">
         <h4>${blog.title}</h4>
          <p>${blog.content}</p>
          <p><b>Category:</b>${blog.category}</p>
@@ -139,7 +139,7 @@ const params=new URLSearchParams(window.location.search)
 const id=params.get("id")
 console.log(id)
 async function getBlog(){
-    let response=await fetch(`http://localhost:3000/blogs/${id}`)
+    let response=await fetch(`https://blog-application-hw22.onrender.com//blogs/${id}`)
     let data=await response.json()
     console.log(data)
     document.getElementById("title").value=data.blog.title
@@ -165,7 +165,7 @@ editForm.addEventListener("submit",async (event)=>{
     if(image){
         formData.append("image",image)
     }
-    let response=await fetch(`http://localhost:3000/blogs/${id}`,{
+    let response=await fetch(`https://blog-application-hw22.onrender.com//blogs/${id}`,{
         method:"PUT",
        body:formData
         })
@@ -179,7 +179,7 @@ editForm.addEventListener("submit",async (event)=>{
 
 //delete blog
 async function deleteBlog(id){
-let response=await fetch(`http://localhost:3000/blogs/${id}`,{
+let response=await fetch(`https://blog-application-hw22.onrender.com//blogs/${id}`,{
     method:"DELETE"
 })
 let data=await response.json()
@@ -201,7 +201,7 @@ if(logoutBtn){
 //profile
 async function getProfile(){
     let token=localStorage.getItem("token")
-    let response=await fetch("http://localhost:3000/profile",{
+    let response=await fetch("https://blog-application-hw22.onrender.com//profile",{
         headers:{
             "Authorization":`Bearer ${token}`
         }
